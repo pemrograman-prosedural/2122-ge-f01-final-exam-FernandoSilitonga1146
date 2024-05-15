@@ -3,23 +3,15 @@
 
 #include "gender.h"
 
-/**
- * @brief define your structure, enums, globally accessible variables, and function prototypes here.
- * The actual function implementation should be defined in the corresponding source file.
- *
- */
-
-typedef struct dorm_t
+struct dorm_t
 {
   char name[20];
   unsigned short capacity;
   enum gender_t gender;
   unsigned short residents_num;
-} Dorm;
+};
 
-
-Dorm create_dorm ( char *_name, unsigned short _capacity, enum gender_t gender );
-short int findDormIdx ( char* _name,  Dorm *list, int length );
-void print_dorm (  Dorm dorm_to_print );
-void printDormDetails (Dorm dorm_to_print );
+struct dorm_t create_dorm(char *_name, unsigned short _capacity, enum gender_t _gender);
+void print_dorm(struct dorm_t *_dorm, int count);
+void print_dorm_detail(struct dorm_t *_dorm, int count);
 #endif

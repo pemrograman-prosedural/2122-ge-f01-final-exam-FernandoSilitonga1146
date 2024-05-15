@@ -1,23 +1,22 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include "dorm.h"
 #include "gender.h"
+#include "dorm.h"
 
-typedef struct {
-    char id[15];
-    char name[50];
+struct student_t
+{
+    char id[12];
+    char name[40];
     char year[5];
     enum gender_t gender;
-    Dorm *dorm;
-} Student;
+    struct dorm_t *dorm;
+};
 
-Student create_student(char *_id, char *_name, char *_year, enum gender_t gender);
-void printStudent(Student student);
-void printStudentDetails(Student student);
-short findStudentIdx(char *id, Student *students, unsigned short totalStudent);
-void assign(Student *student, Dorm *dorm);
-void unassign(Student *student, Dorm *dorm);
-void moveStudent(Student *student, Dorm *newDorm, Dorm *oldDorm);
-
+struct student_t create_student(char *_id, char *_name, char *_year, enum gender_t _gender);
+void print_student(struct student_t *_student, int count);
+void print_student_detail(struct student_t *_student, int count);
+void assign_student(struct student_t *_student, struct dorm_t *_dorm, char *id, char *dorm_name);
+void move_student(struct student_t *_student, struct dorm_t *_dorm, struct dorm_t *old_dorm, char *id, char *dorm_name);
+void dorm_empty(struct student_t *students, struct dorm_t *dorms, int std);
 #endif

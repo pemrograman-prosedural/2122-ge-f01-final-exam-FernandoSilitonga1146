@@ -1,57 +1,70 @@
+#include "student.h"
 #include <stdio.h>
 #include <string.h>
-#include "student.h"
+#include <stdlib.h>
 
-Student create_student(char *_id, char *_name, char *_year, enum gender_t gender) {
-    Student student_;
-    strcpy(student_.id, _id);
-    strcpy(student_.name, _name);
-    strcpy(student_.year, _year);
-    student_.gender = gender;
-    student_.dorm = NULL;
-    return student_;
+struct student_t create_student(char *_id, char *_name, char *_year,enum gender_t _gender){
+    struct student_t s;
+    strcpy(s.id, _id);
+    strcpy(s.name, _name);
+    strcpy(s.year, _year);
+    s.gender = _gender;
+    s.dorm = malloc (sizeof(struct dorm_t));
+    s.dorm = NULL;
+    return s;
 }
-
-void printStudent(Student student) {
-    printf("Student ID: %s\nName: %s\nYear: %s\nGender: %s\n",
-           student.id, student.name, student.year,
-           student.gender == GENDER_MALE ? "Male" : "Female");
-}
-
-void printStudentDetails(Student student) {
-    printf("Student Details:\n");
-    printStudent(student);
-    if (student.dorm != NULL) {
-        printf("Dorm: %s\n", student.dorm->name);
-    } else {
-        printf("Dorm: Unassigned\n");
-    }
-}
-
-short findStudentIdx(char *id, Student *students, unsigned short totalStudent) {
-    for (short i = 0; i < totalStudent; i++) {
-        if (strcmp(students[i].id, id) == 0) {
-            return i;
+void print_student(struct student_t *_student, int count){
+    for (int i = 0; i < count; i++)
+    {
+        if (_student[i].gender==GENDER_MALE){
+            printf("%s|%s|%s|male\n", _student[i].id, _student[i].name, _student[i].year);
+        } else if (_student[i].gender==GENDER_FEMALE){
+            printf("%s|%s|%s|female\n", _student[i].id, _student[i].name, _student[i].year);
         }
     }
-    return -1;  // Not found
 }
-
-void assign(Student *student, Dorm *dorm) {
-    if (student->gender == dorm->gender && dorm->residents_num < dorm->capacity) {
-        student->dorm = dorm;
-        dorm->residents_num++;
+void print_student_detail(struct student_t *_student, int count){
+    for (int i = 0; i < count; i++)
+    {
+        if (_student[i].dorm == NULL){
+            if (_student[i].gender==GENDER_MALE){
+                printf("%s|%s|%s|male|unassigned\n", _student[i].id, _student[i].name, _student[i].year);
+            } else if (_student[i].gender==GENDER_FEMALE){
+                printf("%s|%s|%s|female|unassigned\n", _student[i].id, _student[i].name, _student[i].year);
+            }
+        } else {
+            if (_student[i].gender==GENDER_MALE){
+                printf("%s|%s|%s|male|%s\n", _student[i].id, _student[i].name, _student[i].year, _student[i].dorm->name);
+            } else if (_student[i].gender==GENDER_FEMALE){
+                printf("%s|%s|%s|female|%s\n", _student[i].id, _student[i].name, _student[i].year, _student[i].dorm->name);
+            }
+        }
     }
 }
-
-void unassign(Student *student, Dorm *dorm) {
-    if (student->dorm == dorm) {
-        student->dorm = NULL;
-        dorm->residents_num--;
+void assign_student(struct student_t *_student,struct dorm_t *_dorm, char *id, char *dorm_name){
+    if (_dorm->residents_num < _dorm->capacity){
+        if (_student->gender == _dorm->gender){
+            _student->dorm = _dorm;
+            _dorm->residents_num++;
+        }
     }
 }
-
-void moveStudent(Student *student, Dorm *newDorm, Dorm *oldDorm) {
-    unassign(student, oldDorm);
-    assign(student, newDorm);
+void move_student(struct student_t *_student, struct dorm_t *_dorm, struct dorm_t *old_dorm, char *id, char *dorm_name){
+    if (_dorm->residents_num < _dorm->capacity){
+        if (_student->gender == _dorm->gender){
+            _student->dorm = _dorm;
+            _dorm->residents_num++;
+            old_dorm->residents_num--;
+        }
+    }
+}
+void dorm_empty(struct student_t *students, struct dorm_t *dorms, int stdnt){
+    for (int i = 0; i < stdnt; i++){
+        if (students[i].dorm==NULL){
+            continue;
+        } else if(strcmp(students[i].dorm->name, dorms->name)==0){
+            students[i].dorm = NULL;
+        }
+    }
+    dorms->residents_num = 0;
 }
