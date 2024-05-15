@@ -159,7 +159,7 @@ int main(int _argc, char **_argv) {
                     data_dorm = i;
                     break;
                 }
-            }
+            } 
 
             if (data_student != -1) {
                 if (data_dorm != -1) {
@@ -171,7 +171,7 @@ int main(int _argc, char **_argv) {
             }
 
         } else if (strcmp(masukan, "dorm-empty") == 0) {
-            masukan = strtok(NULL, "#");
+            masukan = strtok(NULL, "#");  
             strcpy(dorm_name, masukan);
             data_dorm = -1;
             for (int i = 0; i < drm; i++) {

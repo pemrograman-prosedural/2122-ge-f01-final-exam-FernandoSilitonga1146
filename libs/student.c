@@ -38,7 +38,7 @@ void print_student_detail(struct student_t *_student, int count){
             } else if (_student[i].gender==GENDER_FEMALE){
                 printf("%s|%s|%s|female|%s\n", _student[i].id, _student[i].name, _student[i].year, _student[i].dorm->name);
             }
-        }
+        } 
     }
 }
 void assign_student(struct student_t *_student,struct dorm_t *_dorm, char *id, char *dorm_name){

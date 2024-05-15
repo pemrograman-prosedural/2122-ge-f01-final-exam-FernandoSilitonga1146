@@ -9,7 +9,7 @@ struct dorm_t create_dorm(char *_name, unsigned short _capacity, enum gender_t _
     d.gender = _gender;
     d.residents_num = 0;
     return d;
-}
+} 
 
 void print_dorm(struct dorm_t *_dorm, int count){
     for (int i = 0; i < count; i++)
