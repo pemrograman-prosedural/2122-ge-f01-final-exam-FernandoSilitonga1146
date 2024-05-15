@@ -1,5 +1,4 @@
 #include "student.h"
-
 #include <stdio.h>
 #include <string.h>
 
@@ -52,27 +51,27 @@ short findStudentIdx ( char *_id, Student *list, int length ) {
     return -1;
 }
 
-void assign ( Student *student_, Dorm *dorm_ )
+void assign ( Student *student_, struct Dorm *dorm_ )
 {
     if ( student_->gender == dorm_->gender && dorm_->residents_num < dorm_->capacity )
     {
         student_->dorm = dorm_;
-        dorm_->residents_num++;
+        Dorm->residents_num++;
     }
     else {
         student_->dorm = NULL;
     }
 }
 
-void unassign ( Student *student_, Dorm* dorm_ )
+void unassign ( Student *student_, struct Dorm* dorm_ )
 {
     if ( student_->dorm == dorm_ ) {
         student_->dorm = NULL;
-        dorm_->residents_num--;
+        Dorm->residents_num--;
     }
 }
 
-void moveStudent ( Student *migrant, Dorm *newResidence , Dorm *oldResidence )
+void moveStudent ( Student *migrant, struct Dorm *newResidence , struct Dorm *oldResidence )
 {
     if ( migrant->dorm != NULL ) {
         unassign ( migrant, oldResidence );
@@ -102,7 +101,7 @@ void printStudentDetails ( Student student_to_print )
     fflush( stdout );
 }
 
-void emptyDorm ( Dorm* residence, Student** potentialResidents, unsigned short totalPR )
+void emptyDorm ( struct Dorm* residence, Student** potentialResidents, unsigned short totalPR )
 {
     for (size_t i=0; i<totalPR; i++) {
         if (potentialResidents[i]->dorm != NULL) {

@@ -9,7 +9,7 @@
 
 int main(int _argc, char **_argv)
 {
-    Dorm* LEFT = (Dorm*) malloc(sizeof(Dorm));
+    Dorm* LEFT = (Dorm )void* malloc(sizeof(Dorm));
     strcpy(LEFT->name,"left");
     LEFT->capacity = 10;
     LEFT->gender = GENDER_FEMALE;
@@ -168,3 +168,8 @@ int main(int _argc, char **_argv)
     
     return 0;
 }
+
+
+
+    
+    

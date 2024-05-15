@@ -8,19 +8,19 @@
  *
  */
 
-Dorm create_dorm ( char *_name, unsigned short _capacity, gender_t _gender )
+struct dorm_t create_dorm ( char *_name, unsigned short _capacity, gender_t _gender )
 {
-    Dorm dorm_;
+    
 
-    dorm_.residents_num = 0;
-    strcpy( dorm_.name, _name );
-    dorm_.capacity = _capacity;
-    dorm_.gender   = _gender;
+    Dorm.residents_num = 0;
+    strcpy( Dorm.name, _name );
+    Dorm.capacity = _capacity;
+    Dorm.gender   = _gender;
 
     return dorm_;
 }
 
-void print_dorm ( Dorm dorm_to_print )
+void print_dorm (struct Dorm dorm_to_print )
 {
     printf( "%s", dorm_to_print.name );
 
@@ -31,7 +31,7 @@ void print_dorm ( Dorm dorm_to_print )
     fflush( stdout );    
 }
 
-void printDormDetails ( Dorm dorm_to_print )
+void printDormDetails (struct Dorm dorm_to_print )
 {
     printf( "%s|%d", dorm_to_print.name, dorm_to_print.capacity );
 
@@ -43,7 +43,7 @@ void printDormDetails ( Dorm dorm_to_print )
     fflush( stdout );  
 }
 
-short findDormIdx ( char* _name, Dorm *list, int length )
+short findDormIdx ( char* _name, struct Dorm *list, int length )
 {
     for ( short i=0; i<length; i++ ) {
         if ( strcmp( list[i].name, _name ) == 0 )
@@ -52,4 +52,3 @@ short findDormIdx ( char* _name, Dorm *list, int length )
 
     return -1;
 }
-
