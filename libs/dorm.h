@@ -9,7 +9,7 @@
  *
  */
 
-struct dorm_t
+typedef struct dorm_t
 {
   char name[20];
   unsigned short capacity;
@@ -18,8 +18,8 @@ struct dorm_t
 } Dorm;
 
 
-struct Dorm create_dorm ( char *_name, unsigned short _capacity, enum gender_t gender );
-short findDormIdx ( char* _name, struct Dorm *list, int length );
-void print_dorm ( struct Dorm dorm_to_print );
-void printDormDetails (struct Dorm dorm_to_print );
+Dorm create_dorm ( char *_name, unsigned short _capacity, enum gender_t gender );
+short int findDormIdx ( char* _name,  Dorm *list, int length );
+void print_dorm (  Dorm dorm_to_print );
+void printDormDetails (Dorm dorm_to_print );
 #endif

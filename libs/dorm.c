@@ -1,54 +1,33 @@
-#include "dorm.h"
 #include <stdio.h>
 #include <string.h>
+#include "dorm.h"
 
-/**
- * @brief Define the complete function definition here. Be sure to enlist the prototype of each function
- * defined here in the corresponding header file.
- *
- */
-
-struct dorm_t create_dorm ( char *_name, unsigned short _capacity, gender_t _gender )
-{
-    
-
-    Dorm.residents_num = 0;
-    strcpy( Dorm.name, _name );
-    Dorm.capacity = _capacity;
-    Dorm.gender   = _gender;
-
+Dorm create_dorm(char *_name, unsigned short _capacity, enum gender_t gender) {
+    Dorm dorm_;
+    strcpy(dorm_.name, _name);
+    dorm_.capacity = _capacity;
+    dorm_.gender = gender;
+    dorm_.residents_num = 0;
     return dorm_;
 }
 
-void print_dorm (struct Dorm dorm_to_print )
-{
-    printf( "%s", dorm_to_print.name );
-
-    ( dorm_to_print.gender == GENDER_MALE )?
-        printf( "|%d|male\n", dorm_to_print.capacity ):
-        printf( "|%d|female\n", dorm_to_print.capacity );
-
-    fflush( stdout );    
+void print_dorm(Dorm dorm_to_print) {
+    printf("Dorm Name: %s\nCapacity: %d\nGender: %s\nResidents: %d\n",
+           dorm_to_print.name, dorm_to_print.capacity,
+           dorm_to_print.gender == GENDER_MALE ? "Male" : "Female",
+           dorm_to_print.residents_num);
 }
 
-void printDormDetails (struct Dorm dorm_to_print )
-{
-    printf( "%s|%d", dorm_to_print.name, dorm_to_print.capacity );
-
-    ( dorm_to_print.gender == GENDER_MALE )?
-        printf( "|male" ) : printf( "|female" );
-    
-    printf( "|%d\n", dorm_to_print.residents_num );
-
-    fflush( stdout );  
+void printDormDetails(Dorm dorm_to_print) {
+    printf("Dorm Details:\n");
+    print_dorm(dorm_to_print);
 }
 
-short findDormIdx ( char* _name, struct Dorm *list, int length )
-{
-    for ( short i=0; i<length; i++ ) {
-        if ( strcmp( list[i].name, _name ) == 0 )
+short int findDormIdx(char *name, Dorm *dorms, unsigned short totalDorm) {
+    for (short i = 0; i < totalDorm; i++) {
+        if (strcmp(dorms[i].name, name) == 0) {
             return i;
+        }
     }
-
-    return -1;
+    return -1;  
 }

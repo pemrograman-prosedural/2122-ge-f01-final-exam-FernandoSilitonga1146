@@ -4,28 +4,20 @@
 #include "dorm.h"
 #include "gender.h"
 
-/**
- * @brief define your structure, enums, globally accessible variables, and function prototypes here.
- * The actual function implementation should be defined in the corresponding source file.
- *
- */
-
-typedef struct student_t
-{
-    char id[12];
-    char name[40];
+typedef struct {
+    char id[15];
+    char name[50];
     char year[5];
     enum gender_t gender;
-    struct Dorm *dorm;
+    Dorm *dorm;
 } Student;
 
-Student create_student ( char *_id, char *_name, char *_year, gender_t _gender );
-short findStudentIdx ( char *_id, Student *list, int length );
-void printStudent ( Student student_to_print );
-void assign ( Student *student_, struct Dorm *dorm_ );
-void unassign ( Student *student_, struct Dorm* dorm_ );
-void moveStudent ( Student *migrant, struct Dorm *newResidence , struct Dorm *oldResidence );
-void printStudentDetails ( Student student_to_print );
-void emptyDorm ( struct Dorm* residence, Student** potentialResidents, unsigned short totalPR );
+Student create_student(char *_id, char *_name, char *_year, enum gender_t gender);
+void printStudent(Student student);
+void printStudentDetails(Student student);
+short findStudentIdx(char *id, Student *students, unsigned short totalStudent);
+void assign(Student *student, Dorm *dorm);
+void unassign(Student *student, Dorm *dorm);
+void moveStudent(Student *student, Dorm *newDorm, Dorm *oldDorm);
 
 #endif
