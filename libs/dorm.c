@@ -11,10 +11,10 @@ struct dorm_t create_dorm(char *_nama, unsigned short _kapasitas, enum gender_t 
     dorm_.gender = _gender;   
     dorm_.residents_num = 0;                                                                                                                                            
                                                                                                                                                                                                                                                            
-  return dorm_;                                                                                                                   
+  return dorm_;                                                                                                                    
 }                                                                                                               
 void print_dorm(struct dorm_t *_dorm, int count){
-         
+          
     char jenis[10];                                                                                               
     strcpy(jenis, "|male\n");                                                                             
     char type[10];                                                                                      

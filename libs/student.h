@@ -11,10 +11,10 @@
  */
 
 struct student_t
-{
+{ 
     char nim[12]; 
-    char nama[40];
-    char tahun[5];
+    char nama[40]; 
+    char tahun[5]; 
     enum gender_t gender;
     struct dorm_t *dorm;
 };
