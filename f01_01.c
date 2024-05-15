@@ -1,10 +1,10 @@
-// NIM - Name
-// NIM - Name
+// 12S23002 - Fernando Silitonga
+// 12S23017 - Andrey Jonathan
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "libs/dorm.h"
+#include "libs/dorm.h" 
 #include "libs/student.h"
 
 int main(int _argc, char **_argv){
@@ -13,7 +13,7 @@ char data[200];
 char nim[12];
 char nama[40];
 char tahun[5];
-char *mahasiswa;
+char *mahasiswa; 
 int i=0;
 
 struct dorm_t *dorms = malloc(200 * sizeof(struct dorm_t));

@@ -11,7 +11,7 @@
 
 struct dorm_t 
 {
-  char nama[20];
+  char nama[20]; 
   unsigned short kapasitas;
   enum gender_t gender;  
   unsigned short residents_num;

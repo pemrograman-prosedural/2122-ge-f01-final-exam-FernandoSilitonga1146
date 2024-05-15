@@ -39,7 +39,7 @@ void print_student(struct student_t *_student, int a){
 void print_student_detail(struct student_t *_student, int a){
     char jenis[20];
     strcpy(jenis, "|male");
-    char type[20]; 
+    char type[20];  
     strcpy(type, "|female");  
     
     for (int i = 0; i < a; i++){

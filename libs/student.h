@@ -16,7 +16,7 @@ struct student_t
     char nama[40]; 
     char tahun[5]; 
     enum gender_t gender;
-    struct dorm_t *dorm;
+    struct dorm_t *dorm; 
 };
 
 struct student_t create_student(char *_nim, char *_nama, char *_tahun, enum gender_t _gender);
